@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://dqe60rpwq7cm"]
+[gd_scene load_steps=3 format=3 uid="uid://dqe60rpwq7cm"]
+
+[ext_resource type="Texture2D" uid="uid://ecwg3fa6tcnf" path="res://Character/new_background.png" id="1_4b82u"]
+[ext_resource type="PackedScene" uid="uid://bc46hc54f7jpk" path="res://Character.tscn" id="2_j5kba"]
 
 [node name="World" type="Node2D"]
+
+[node name="NewBackground" type="Sprite2D" parent="."]
+position = Vector2(226, 215)
+scale = Vector2(6.35742, 3.3623)
+texture = ExtResource("1_4b82u")
+
+[node name="Hero" parent="." instance=ExtResource("2_j5kba")]
+position = Vector2(133, 84)
