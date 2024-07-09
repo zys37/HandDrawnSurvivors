@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjxi0lo31bnl2"
-path="res://.godot/imported/mage_idle.png-0c0244b88c379e62e84a789b3d5ce818.ctex"
+uid="uid://b2203kxapanmp"
+path="res://.godot/imported/mage_idle_outline.png-ae3c674fb8bcc412856b6d9f24ae5695.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Character/mage_idle.png"
-dest_files=["res://.godot/imported/mage_idle.png-0c0244b88c379e62e84a789b3d5ce818.ctex"]
+source_file="res://Character/mage_idle_outline.png"
+dest_files=["res://.godot/imported/mage_idle_outline.png-ae3c674fb8bcc412856b6d9f24ae5695.ctex"]
 
 [params]
 
