@@ -87,7 +87,7 @@ animations = [{
 "speed": 60.0
 }]
 
-[node name="Node2D" type="AnimatedSprite2D"]
+[node name="Eye_enemy" type="AnimatedSprite2D"]
 position = Vector2(317, 267)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_gc5a1")

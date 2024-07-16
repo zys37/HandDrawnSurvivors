@@ -87,7 +87,7 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="Node2D" type="AnimatedSprite2D"]
+[node name="Tentacle_enemy" type="AnimatedSprite2D"]
 position = Vector2(585, 303)
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_7d1lu")
