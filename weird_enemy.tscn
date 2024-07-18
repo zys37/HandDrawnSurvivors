@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhpxltcdey01r"]
+[gd_scene load_steps=17 format=3 uid="uid://bhpxltcdey01r"]
 
 [ext_resource type="Texture2D" uid="uid://hgggjnamufyt" path="res://Graphics/shadow_run.png" id="1_jidcq"]
+[ext_resource type="Script" path="res://Eye_Enemy.gd" id="1_oro0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8urm"]
 atlas = ExtResource("1_jidcq")
@@ -94,8 +95,18 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="Weird_Enemy" type="AnimatedSprite2D"]
-position = Vector2(431, 356)
-scale = Vector2(0.25, 0.25)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0j13v"]
+radius = 11.0
+height = 42.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_oro0r")
+
+[node name="Weird_Enemy" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_8lbu8")
+autoplay = "default"
 frame_progress = 0.446451
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0j13v")

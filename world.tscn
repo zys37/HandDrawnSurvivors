@@ -1,57 +1,136 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqe60rpwq7cm"]
+[gd_scene load_steps=7 format=3 uid="uid://dqe60rpwq7cm"]
 
-[ext_resource type="Texture2D" uid="uid://douxfnswhkr43" path="res://Graphics/game background.png" id="1_2w704"]
+[ext_resource type="Texture2D" uid="uid://b515grckg0axk" path="res://Graphics/game_background_2.png" id="1_q6hvq"]
 [ext_resource type="PackedScene" uid="uid://bc46hc54f7jpk" path="res://Character.tscn" id="2_j5kba"]
 [ext_resource type="PackedScene" uid="uid://bgrdgyolov51r" path="res://Eye_Enemy.tscn" id="3_yfdrp"]
 [ext_resource type="PackedScene" uid="uid://cbiwofvtl78wd" path="res://tentacle_enemy.tscn" id="4_ut54o"]
 [ext_resource type="PackedScene" uid="uid://bhpxltcdey01r" path="res://weird_enemy.tscn" id="5_q2hb4"]
+[ext_resource type="Texture2D" uid="uid://cmil7x63ba1ww" path="res://Graphics/cauldron.png" id="6_0ljp7"]
 
 [node name="World" type="Node2D"]
 
 [node name="GameBackground2" type="Sprite2D" parent="."]
-texture = ExtResource("1_2w704")
+position = Vector2(0, -1)
+texture = ExtResource("1_q6hvq")
 
-[node name="GameBackground" type="Sprite2D" parent="."]
-position = Vector2(-2048, 1)
-texture = ExtResource("1_2w704")
+[node name="GameBackground3" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(2048, 3)
+texture = ExtResource("1_q6hvq")
 
-[node name="GameBackground3" type="Sprite2D" parent="."]
-position = Vector2(-2048, -2035)
-texture = ExtResource("1_2w704")
+[node name="GameBackground4" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(1181, -2045)
+texture = ExtResource("1_q6hvq")
 
-[node name="GameBackground4" type="Sprite2D" parent="."]
-position = Vector2(-2048, 2039)
-texture = ExtResource("1_2w704")
+[node name="GameBackground5" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(-867, -2048)
+texture = ExtResource("1_q6hvq")
 
-[node name="GameBackground5" type="Sprite2D" parent="."]
-position = Vector2(2, 2039)
-texture = ExtResource("1_2w704")
+[node name="GameBackground6" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(-2046, -7)
+texture = ExtResource("1_q6hvq")
 
-[node name="GameBackground6" type="Sprite2D" parent="."]
-position = Vector2(-3, -2041)
-texture = ExtResource("1_2w704")
+[node name="GameBackground7" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(4096, -1)
+texture = ExtResource("1_q6hvq")
 
-[node name="GameBackground7" type="Sprite2D" parent="."]
-position = Vector2(2047, -2041)
-texture = ExtResource("1_2w704")
+[node name="GameBackground8" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(-2913, -2055)
+texture = ExtResource("1_q6hvq")
 
-[node name="GameBackground8" type="Sprite2D" parent="."]
-position = Vector2(2047, 10)
-texture = ExtResource("1_2w704")
+[node name="GameBackground9" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(3229, -2045)
+texture = ExtResource("1_q6hvq")
 
-[node name="GameBackground9" type="Sprite2D" parent="."]
-position = Vector2(2052, 2060)
-texture = ExtResource("1_2w704")
+[node name="GameBackground10" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(5277, -2043)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground11" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(-4094, -7)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground12" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(-4958, -2055)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground13" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(-4089, 2041)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground14" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(-2041, 2040)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground15" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(1, 2040)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground16" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(2049, 2046)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground17" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(4094, 2045)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground18" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(6144, -6)
+texture = ExtResource("1_q6hvq")
+
+[node name="GameBackground19" type="Sprite2D" parent="GameBackground2"]
+position = Vector2(6142, 2042)
+texture = ExtResource("1_q6hvq")
 
 [node name="Hero" parent="." instance=ExtResource("2_j5kba")]
 position = Vector2(133, 84)
 scale = Vector2(0.75, 0.75)
 
-[node name="Node2D" parent="." instance=ExtResource("3_yfdrp")]
-position = Vector2(-60, 84)
-
-[node name="Node2D2" parent="." instance=ExtResource("4_ut54o")]
-position = Vector2(326, 77)
-
 [node name="Weird_Enemy" parent="." instance=ExtResource("5_q2hb4")]
 position = Vector2(184, -109)
+
+[node name="Cauldron" type="Sprite2D" parent="."]
+position = Vector2(2478, -1956)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron2" type="Sprite2D" parent="Cauldron"]
+position = Vector2(-7016.67, -120)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron3" type="Sprite2D" parent="Cauldron"]
+position = Vector2(-19723.3, 763.333)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron4" type="Sprite2D" parent="Cauldron"]
+position = Vector2(-18773.3, 4343.33)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron5" type="Sprite2D" parent="Cauldron"]
+position = Vector2(-256.667, 4980)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron6" type="Sprite2D" parent="Cauldron"]
+position = Vector2(5576.67, 3080)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron7" type="Sprite2D" parent="Cauldron"]
+position = Vector2(-786.667, 9096.67)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron8" type="Sprite2D" parent="Cauldron"]
+position = Vector2(-17143.3, 13236.7)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron9" type="Sprite2D" parent="Cauldron"]
+position = Vector2(-3983.33, 7443.33)
+texture = ExtResource("6_0ljp7")
+
+[node name="Cauldron10" type="Sprite2D" parent="Cauldron"]
+position = Vector2(3340, 13236.7)
+texture = ExtResource("6_0ljp7")
+
+[node name="Eye_enemy" parent="." instance=ExtResource("3_yfdrp")]
+position = Vector2(-476, -289)
+
+[node name="Tentacle_enemy" parent="." instance=ExtResource("4_ut54o")]
+position = Vector2(370, -357)
