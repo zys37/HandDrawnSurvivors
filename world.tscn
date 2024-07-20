@@ -1,16 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqe60rpwq7cm"]
+[gd_scene load_steps=6 format=3 uid="uid://dqe60rpwq7cm"]
 
 [ext_resource type="Texture2D" uid="uid://b515grckg0axk" path="res://Graphics/game_background_2.png" id="1_q6hvq"]
+[ext_resource type="Script" path="res://world.gd" id="1_v6ejb"]
 [ext_resource type="PackedScene" uid="uid://bc46hc54f7jpk" path="res://Character.tscn" id="2_j5kba"]
-[ext_resource type="PackedScene" uid="uid://bgrdgyolov51r" path="res://Eye_Enemy.tscn" id="3_yfdrp"]
-[ext_resource type="PackedScene" uid="uid://cbiwofvtl78wd" path="res://tentacle_enemy.tscn" id="4_ut54o"]
-[ext_resource type="PackedScene" uid="uid://bhpxltcdey01r" path="res://weird_enemy.tscn" id="5_q2hb4"]
 [ext_resource type="Texture2D" uid="uid://cmil7x63ba1ww" path="res://Graphics/cauldron.png" id="6_0ljp7"]
 
+[sub_resource type="Curve2D" id="Curve2D_4fxur"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2097.33, 1310.67, 0, 0, 0, 0, 2777.33, 1334.67, 0, 0, 0, 0, 2809.33, -1042.67, 0, 0, 0, 0, -2085.33, -1030.67, 0, 0, 0, 0, -2097.33, 1310.67)
+}
+point_count = 5
+
 [node name="World" type="Node2D"]
+script = ExtResource("1_v6ejb")
 
 [node name="GameBackground2" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(-108, 77)
 texture = ExtResource("1_q6hvq")
 
 [node name="GameBackground3" type="Sprite2D" parent="GameBackground2"]
@@ -85,8 +90,13 @@ texture = ExtResource("1_q6hvq")
 position = Vector2(133, 84)
 scale = Vector2(0.75, 0.75)
 
-[node name="Weird_Enemy" parent="." instance=ExtResource("5_q2hb4")]
-position = Vector2(184, -109)
+[node name="Path2D" type="Path2D" parent="Hero"]
+curve = SubResource("Curve2D_4fxur")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Hero/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-2097.33, 1310.67)
+rotation = 0.00492337
 
 [node name="Cauldron" type="Sprite2D" parent="."]
 position = Vector2(2478, -1956)
@@ -129,8 +139,8 @@ texture = ExtResource("6_0ljp7")
 position = Vector2(3340, 13236.7)
 texture = ExtResource("6_0ljp7")
 
-[node name="Eye_enemy" parent="." instance=ExtResource("3_yfdrp")]
-position = Vector2(-476, -289)
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.35
+autostart = true
 
-[node name="Tentacle_enemy" parent="." instance=ExtResource("4_ut54o")]
-position = Vector2(370, -357)
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

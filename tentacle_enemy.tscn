@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://cbiwofvtl78wd"]
 
+[ext_resource type="Script" path="res://Eye_Enemy.gd" id="1_5v586"]
 [ext_resource type="Texture2D" uid="uid://cl31e0hwk6b0r" path="res://Graphics/Tentacle_guy.png" id="1_apysu"]
-[ext_resource type="Script" path="res://Eye_enemy.gd" id="1_buhux"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gi7v8"]
 atlas = ExtResource("1_apysu")
@@ -89,10 +89,9 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xtqh8"]
-radius = 31.257
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_buhux")
+script = ExtResource("1_5v586")
 
 [node name="Tentacle_enemy" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
@@ -101,4 +100,5 @@ autoplay = "default"
 frame_progress = 0.215084
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
 shape = SubResource("CircleShape2D_xtqh8")
