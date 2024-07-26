@@ -7,6 +7,14 @@ const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_playing = 0
+var spell_scene = preload("res://Spell.tscn")
+
+func fire():
+	var spell = spell_scene.instantiate()
+	spell.direction = ($Node2D/Marker2D.global_position - global_position).normalized()
+	spell.global_position = $Node2D/Marker2D.global_position
+	get_tree().get_root().add_child(spell)
+	
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -48,4 +56,6 @@ func _physics_process(delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
 		is_playing = 0
+	if Input.is_action_pressed("ui_select"):
+		fire()
 	move_and_slide()

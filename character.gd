@@ -17,4 +17,4 @@ func _physics_process(delta):
 		$Body.flip_h = true
 	#animations
 	#apply movement
-	move_and_slide()
+	#move_and_slide()

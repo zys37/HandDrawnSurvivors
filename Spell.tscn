@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://clubpcgjbs08s"]
+
+[ext_resource type="Script" path="res://spell.gd" id="1_22375"]
+[ext_resource type="Texture2D" uid="uid://be3pmt2pdm3xi" path="res://Graphics/Circle.png" id="2_fi38p"]
+
+[sub_resource type="Animation" id="Animation_kxo0r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mrjjb"]
+resource_name = "spell_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5mai"]
+_data = {
+"RESET": SubResource("Animation_kxo0r"),
+"spell_animation": SubResource("Animation_mrjjb")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rp4at"]
+radius = 204.8
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_22375")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+position = Vector2(138.5, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Marker2D"]
+root_node = NodePath("../Area2D")
+libraries = {
+"": SubResource("AnimationLibrary_p5mai")
+}
+autoplay = "spell_animation"
+speed_scale = 2.516
+
+[node name="Area2D" type="Area2D" parent="Node2D/Marker2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Marker2D/Area2D"]
+position = Vector2(-0.5, 0.5)
+scale = Vector2(0.0585938, 0.0585937)
+texture = ExtResource("2_fi38p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Marker2D/Area2D"]
+position = Vector2(-4.54747e-13, -4.54747e-13)
+scale = Vector2(0.0390625, 0.0390625)
+shape = SubResource("CircleShape2D_rp4at")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Node2D/Marker2D/Area2D"]
+position = Vector2(-5.96046e-08, 0)
+scale = Vector2(0.75, 0.8)
+
+[connection signal="body_entered" from="Node2D/Marker2D/Area2D" to="Node2D/Marker2D/Area2D" method="_on_body_entered"]
+[connection signal="screen_exited" from="Node2D/Marker2D/Area2D/VisibleOnScreenNotifier2D" to="Node2D/Marker2D/Area2D" method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -96,7 +96,7 @@ curve = SubResource("Curve2D_4fxur")
 [node name="PathFollow2D" type="PathFollow2D" parent="Hero/Path2D"]
 unique_name_in_owner = true
 position = Vector2(-2097.33, 1310.67)
-rotation = 0.00492337
+rotation = 0.00492338
 
 [node name="Cauldron" type="Sprite2D" parent="."]
 position = Vector2(2478, -1956)
