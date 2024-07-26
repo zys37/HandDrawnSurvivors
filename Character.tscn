@@ -209,7 +209,7 @@ shape = SubResource("CapsuleShape2D_iubwa")
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(0, -21)
-rotation = 6.28319
+rotation = 4.85142
 scale = Vector2(2, 2)
 
 [node name="Marker2D" type="Marker2D" parent="Node2D"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsem40v5aorpu"]
+
+[ext_resource type="Script" path="res://multishot.gd" id="1_kqoer"]
+[ext_resource type="Texture2D" uid="uid://be3pmt2pdm3xi" path="res://Graphics/Circle.png" id="2_rl4qy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rhko1"]
+radius = 144.125
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_kqoer")
+
+[node name="Node2D" type="Node2D" parent="."]
+rotation = 6.28319
+
+[node name="Marker2D" type="Marker2D" parent="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="Node2D/Marker2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Marker2D/Area2D"]
+texture = ExtResource("2_rl4qy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Marker2D/Area2D"]
+shape = SubResource("CircleShape2D_rhko1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Node2D/Marker2D/Area2D"]
+
+[connection signal="body_entered" from="Node2D/Marker2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="screen_exited" from="Node2D/Marker2D/Area2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

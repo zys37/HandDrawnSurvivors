@@ -91,7 +91,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_5ldc3"]
 radius = 100.885
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="eye_enemy" type="CharacterBody2D"]
 script = ExtResource("2_4ryp2")
 
 [node name="Eye_enemy" type="AnimatedSprite2D" parent="."]

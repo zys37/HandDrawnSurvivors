@@ -77,5 +77,5 @@ shape = SubResource("CircleShape2D_rp4at")
 position = Vector2(-5.96046e-08, 0)
 scale = Vector2(0.75, 0.8)
 
-[connection signal="body_entered" from="Node2D/Marker2D/Area2D" to="Node2D/Marker2D/Area2D" method="_on_body_entered"]
-[connection signal="screen_exited" from="Node2D/Marker2D/Area2D/VisibleOnScreenNotifier2D" to="Node2D/Marker2D/Area2D" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Node2D/Marker2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="screen_exited" from="Node2D/Marker2D/Area2D/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
