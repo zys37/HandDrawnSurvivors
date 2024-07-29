@@ -94,7 +94,7 @@ animations = [{
 script = ExtResource("1_5v586")
 
 [node name="Tentacle_enemy" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_7d1lu")
 autoplay = "default"
 frame_progress = 0.215084

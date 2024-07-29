@@ -57,4 +57,20 @@ func _physics_process(delta):
 		is_playing = 0
 	if Input.is_action_pressed("ui_select"):
 		fire()
+	if global.player_health <= 0:
+		get_tree().paused = true 
 	move_and_slide()
+
+
+
+func _on_area_2d_body_entered(body):
+	if body.has_method("dmg_taken"):
+		global.player_health-=global.enemy_damage
+		body.ButtonTimer.start()
+		
+
+
+
+func _on_area_2d_body_exited(body):
+	if body.has_method("dmg_taken"):
+		body.ButtonTimer.stop()
