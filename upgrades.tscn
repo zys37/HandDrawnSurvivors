@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://cerqtj84of0wy"]
+
+[ext_resource type="Script" path="res://upgrades.gd" id="1_gr86e"]
+
+[node name="Upgrades" type="Control"]
+process_mode = 3
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gr86e")
+
+[node name="Left Upgrade" type="Button" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_left = 137.0
+offset_top = 223.0
+offset_right = 691.0
+offset_bottom = 679.0
+text = "  "
+text_overrun_behavior = 4
+
+[node name="Right Upgrade" type="Button" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_left = 858.0
+offset_top = 223.0
+offset_right = 1412.0
+offset_bottom = 684.0
+
+[connection signal="pressed" from="Left Upgrade" to="." method="_on_left_upgrade_pressed"]
+[connection signal="pressed" from="Right Upgrade" to="." method="_on_right_upgrade_pressed"]

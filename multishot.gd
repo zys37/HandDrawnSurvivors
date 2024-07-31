@@ -1,10 +1,14 @@
 extends Node2D
 var direction = Vector2.RIGHT
-var speed = 300
 
-
+func bigger_spell():
+	$".".scale.x=global.multishot_scale
+	$".".scale.y=global.multishot_scale
 func _physics_process(delta):
-	translate(direction.normalized()*speed*delta)
+	translate(direction.normalized()*global.projectile_speed*delta)
+	
+func _process(delta):
+	bigger_spell()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

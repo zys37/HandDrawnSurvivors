@@ -15,9 +15,9 @@ func update_level():
 func update_stage():
 	if global.player_level == 3:
 		global.stage = 1
-		global.speed = 4
+		global.speed = 2.5
 		global.enemy_damage = 6
 	if global.player_level ==6:
 		global.stage = 2
-		global.speed = 6
+		global.speed = 3
 		global.enemy_damage = 7

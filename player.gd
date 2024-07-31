@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -24,13 +23,14 @@ func _physics_process(delta):
 		$Hero.play("Walking")
 	if Input.is_action_pressed("ui_up"):
 		is_playing = 1
-		velocity.y = -SPEED
+		velocity.y = -global.player_speed
 	elif Input.is_action_pressed("ui_down"):
 		is_playing = 1
-		velocity.y = SPEED
+		velocity.y = global.player_speed
 	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		velocity.y = move_toward(velocity.y, 0, global.player_speed)
 		is_playing = 0
+	$AnimationPlayer.speed_scale = global.speed_scale
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -51,14 +51,14 @@ func _physics_process(delta):
 	if direction.length() > 0:
 		direction = direction.normalized()
 		is_playing = 1
-		velocity = direction * SPEED
+		velocity = direction * global.player_speed
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
+		velocity = velocity.move_toward(Vector2.ZERO, global.player_speed)
 		is_playing = 0
-	if Input.is_action_pressed("ui_select"):
-		fire()
 	if global.player_health <= 0:
 		get_tree().paused = true 
+	if global.is_multishot_taken == true:
+		fire()
 	move_and_slide()
 
 

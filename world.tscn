@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqe60rpwq7cm"]
+[gd_scene load_steps=8 format=3 uid="uid://dqe60rpwq7cm"]
 
 [ext_resource type="Texture2D" uid="uid://b515grckg0axk" path="res://Graphics/game_background_2.png" id="1_q6hvq"]
 [ext_resource type="Script" path="res://world.gd" id="1_v6ejb"]
 [ext_resource type="PackedScene" uid="uid://bc46hc54f7jpk" path="res://Character.tscn" id="2_j5kba"]
 [ext_resource type="PackedScene" uid="uid://eirt5qfwo6n3" path="res://ui.tscn" id="5_0pbgx"]
+[ext_resource type="PackedScene" uid="uid://dnnsef44f15o0" path="res://fog.tscn" id="5_8acfr"]
 [ext_resource type="Texture2D" uid="uid://cmil7x63ba1ww" path="res://Graphics/cauldron.png" id="6_0ljp7"]
 
 [sub_resource type="Curve2D" id="Curve2D_4fxur"]
@@ -14,6 +15,10 @@ point_count = 5
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_v6ejb")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("5_8acfr")]
+layer = 0
+scroll_ignore_camera_zoom = true
 
 [node name="GameBackground2" type="Sprite2D" parent="."]
 position = Vector2(-108, 77)
@@ -100,10 +105,10 @@ position = Vector2(-2097.33, 1310.67)
 rotation = 0.00492338
 
 [node name="Control" parent="Hero" instance=ExtResource("5_0pbgx")]
-offset_left = -893.333
-offset_top = -665.333
-offset_right = -893.333
-offset_bottom = -665.333
+offset_left = -985.333
+offset_top = -910.667
+offset_right = -985.333
+offset_bottom = -910.667
 
 [node name="Cauldron" type="Sprite2D" parent="."]
 position = Vector2(2478, -1956)

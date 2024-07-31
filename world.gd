@@ -1,5 +1,7 @@
 extends Node2D
 
+func _process(delta):
+	$Timer.wait_time = global.wait_time
 
 func spawn_mob():
 	var eye_mob = preload("res://Eye_Enemy.tscn").instantiate()

@@ -7,7 +7,7 @@
 radius = 144.125
 
 [node name="Node2D" type="Node2D"]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_kqoer")
 
 [node name="Node2D" type="Node2D" parent="."]

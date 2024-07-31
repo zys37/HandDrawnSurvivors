@@ -9,6 +9,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 57.0
+offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -22,16 +24,15 @@ script = ExtResource("1_nc24u")
 layout_mode = 0
 offset_left = 14.0
 offset_top = 30.0
-offset_right = 1261.0
+offset_right = 1768.0
 offset_bottom = 57.0
 show_percentage = false
 script = ExtResource("2_7p7gw")
 
 [node name="health" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 205.0
-offset_right = 614.0
-offset_bottom = 233.0
-show_percentage = false
+offset_left = 793.0
+offset_top = 987.0
+offset_right = 1132.0
+offset_bottom = 1014.0
 script = ExtResource("3_niiat")

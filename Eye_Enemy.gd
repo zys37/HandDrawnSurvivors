@@ -15,7 +15,7 @@ func attack():
 func _physics_process(delta):
 	move_and_collide((get_parent().get_node("Hero").position - position).normalized()*global.speed)
 	if health<=0:
-		global.xp +=1
+		global.xp += global.xp_gain
 		queue_free()
 		
 		
