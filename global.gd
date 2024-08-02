@@ -16,3 +16,5 @@ var multishot_scale = 0.1
 var player_speed = 300
 var wait_time = 0.35
 var upgrade_chosen = false
+var multishot_damage = 1
+var spell_damage = 1

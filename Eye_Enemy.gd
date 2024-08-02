@@ -7,8 +7,8 @@ func _ready():
 	ButtonTimer.timeout.connect(self.on_timer_timeout)
 	add_child(ButtonTimer)
 # Called when the node enters the scene tree for the first time.
-func dmg_taken():
-	health-=1
+func dmg_taken(spell_damage):
+	health-=spell_damage
 func attack():
 	global.player_health -= global.enemy_damage
 # Called every frame. 'delta' is the elapsed time since the previous frame.

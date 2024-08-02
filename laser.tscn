@@ -1,0 +1,92 @@
+[gd_scene load_steps=12 format=3 uid="uid://f4f3euy2ir7y"]
+
+[ext_resource type="Script" path="res://RayCast2D.gd" id="1_qaawy"]
+[ext_resource type="Texture2D" uid="uid://c7xiwwgfnaf0u" path="res://Graphics/glowing_circle.png" id="2_g4wxs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02i73"]
+size = Vector2(20, 233)
+
+[sub_resource type="Gradient" id="Gradient_3ek0j"]
+offsets = PackedFloat32Array(0.991803)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m17h6"]
+gradient = SubResource("Gradient_3ek0j")
+
+[sub_resource type="Curve" id="Curve_p3npk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.054945), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hlrmb"]
+curve = SubResource("Curve_p3npk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jdulm"]
+particle_flag_disable_z = true
+initial_velocity_min = 125.0
+initial_velocity_max = 125.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_hlrmb")
+color_ramp = SubResource("GradientTexture1D_m17h6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0bdrq"]
+particle_flag_disable_z = true
+initial_velocity_min = 250.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_hlrmb")
+color_ramp = SubResource("GradientTexture1D_m17h6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kjjj0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 98, 0)
+tangential_accel_min = 100.0
+tangential_accel_max = 200.0
+scale_min = 0.25
+
+[sub_resource type="Environment" id="Environment_4kf6u"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 1.55
+glow_blend_mode = 0
+glow_hdr_luminance_cap = 2.0
+
+[node name="RayCast2D" type="RayCast2D"]
+position = Vector2(146, 249)
+target_position = Vector2(429, 0)
+script = ExtResource("1_qaawy")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(1, 1.9)
+points = PackedVector2Array(0, 0, 40, 0)
+default_color = Color(0.14419, 0.507946, 0.799872, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(422, 0)
+shape = SubResource("RectangleShape2D_02i73")
+
+[node name="CastingParticles" type="GPUParticles2D" parent="."]
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_jdulm")
+texture = ExtResource("2_g4wxs")
+lifetime = 0.3
+
+[node name="CollisionParticles" type="GPUParticles2D" parent="."]
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_0bdrq")
+texture = ExtResource("2_g4wxs")
+lifetime = 0.3
+
+[node name="BeamParticles2D" type="GPUParticles2D" parent="."]
+amount = 180
+process_material = SubResource("ParticleProcessMaterial_kjjj0")
+texture = ExtResource("2_g4wxs")
+lifetime = 0.3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4kf6u")

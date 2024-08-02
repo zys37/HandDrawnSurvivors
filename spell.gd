@@ -13,4 +13,4 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("dmg_taken"):
-		body.dmg_taken()
+		body.dmg_taken(global.spell_damage)

@@ -18,4 +18,4 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_area_2d_body_entered(body):
 	queue_free()
 	if body.has_method("dmg_taken"):
-		body.dmg_taken()
+		body.dmg_taken(global.multishot_damage)
