@@ -59,6 +59,7 @@ target_position = Vector2(429, 0)
 script = ExtResource("1_qaawy")
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 position = Vector2(0, -1.90735e-06)
 scale = Vector2(1, 1.9)
 points = PackedVector2Array(0, 0, 40, 0)
@@ -90,3 +91,5 @@ lifetime = 0.3
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4kf6u")
+
+[node name="Timer" type="Timer" parent="."]
