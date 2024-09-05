@@ -3,7 +3,6 @@ extends RayCast2D
 @onready var casting_particles: GPUParticles2D = $CastingParticles
 @onready var collision_particles_2: GPUParticles2D = $CollisionParticles2
 @onready var beam_particle_2d: GPUParticles2D = $BeamParticle2D
-
 var is_casting: bool = false :
 	set(value): 
 		is_casting = value
@@ -17,11 +16,9 @@ var is_casting: bool = false :
 		set_physics_process(is_casting)
 func _ready():
 	is_casting = false
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		self.is_casting = event.pressed
 
 func _physics_process(delta: float) -> void:
+	$is_shooting.wait_time = global.laser_cooldown
 	var cast_point := target_position
 	force_raycast_update()
 	$CollisionParticles.emitting = is_colliding()
@@ -38,3 +35,12 @@ func appear() -> void:
 func disappear() -> void:
 	var tween = create_tween()
 	tween.tween_property($Line2D, "width", 0, 0.1)
+
+
+func _on_timer_timeout():
+	is_casting = true
+	$shoot.start()
+
+
+func _on_shoot_timeout():
+	is_casting = false

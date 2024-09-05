@@ -18,3 +18,4 @@ var wait_time = 0.35
 var upgrade_chosen = false
 var multishot_damage = 1
 var spell_damage = 1
+var laser_cooldown = 3
