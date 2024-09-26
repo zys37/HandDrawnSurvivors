@@ -44,9 +44,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("ui_left"):
 		direction.x = -1
 		$Hero.flip_h = true
+		$Hero/Node2D3.position.x = -54
 	elif Input.is_action_pressed("ui_right"):
 		direction.x = 1
 		$Hero.flip_h = false
+		$Hero/Node2D3.position.x = 48
 
 	if direction.length() > 0:
 		direction = direction.normalized()

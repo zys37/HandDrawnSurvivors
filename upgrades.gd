@@ -32,11 +32,11 @@ func _on_left_upgrade_pressed():
 	if $"Left Upgrade".text == upgrades[3]:
 		global.xp_gain+=1
 	if $"Left Upgrade".text == upgrades[4]:
-		global.wait_time-=0.3
+		global.wait_time-=0.1
 	if $"Left Upgrade".text == upgrades[5]:
 		global.is_multishot_taken = true
 	if $"Left Upgrade".text == upgrades[5] and global.is_multishot_taken == true:
-		global.multishot_damage+=0.25
+		global.multishot_damage+=0.2
 	global.upgrade_chosen = true
 	get_tree().paused = false
 
@@ -52,10 +52,10 @@ func _on_right_upgrade_pressed():
 	if $"Right Upgrade".text == upgrades[3]:
 		global.xp_gain+=1
 	if $"Right Upgrade".text == upgrades[4]:
-		global.wait_time-=0.3
+		global.wait_time-=0.1
 	if $"Right Upgrade".text == upgrades[5]:
 		global.is_multishot_taken = true
 	if $"Right Upgrade".text == upgrades[5] and global.is_multishot_taken == true:
-		global.multishot_damage+=0.25
+		global.multishot_damage+=0.2
 	global.upgrade_chosen = true
 	get_tree().paused = false

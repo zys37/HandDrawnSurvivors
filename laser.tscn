@@ -3,6 +3,10 @@
 [ext_resource type="Script" path="res://laser.gd" id="1_f6acx"]
 [ext_resource type="Texture2D" uid="uid://c7xiwwgfnaf0u" path="res://Graphics/glowing_circle.png" id="2_g4wxs"]
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0ldhr"]
+a = Vector2(4538.76, 1)
+b = Vector2(-19.5, 0)
+
 [sub_resource type="Gradient" id="Gradient_3ek0j"]
 offsets = PackedFloat32Array(0.991803)
 colors = PackedColorArray(1, 1, 1, 1)
@@ -25,19 +29,6 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_hlrmb")
 color_ramp = SubResource("GradientTexture1D_m17h6")
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_0ldhr"]
-a = Vector2(19.5, 0)
-b = Vector2(-19.5, 0)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kjjj0"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-gravity = Vector3(0, 98, 0)
-tangential_accel_min = 100.0
-tangential_accel_max = 1000.0
-scale_min = 0.25
-
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jdulm"]
 particle_flag_disable_z = true
 initial_velocity_min = 125.0
@@ -46,66 +37,76 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_hlrmb")
 color_ramp = SubResource("GradientTexture1D_m17h6")
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kjjj0"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 98, 0)
+tangential_accel_min = 200.0
+tangential_accel_max = 800.0
+scale_min = 0.25
+
 [sub_resource type="Environment" id="Environment_4kf6u"]
 background_mode = 3
 glow_enabled = true
+glow_levels/4 = 1.0
 glow_intensity = 1.0
 glow_strength = 1.55
 glow_blend_mode = 0
 glow_hdr_luminance_cap = 2.0
 
-[node name="Node2D" type="Node2D"]
+[node name="RayCast2D" type="RayCast2D"]
+position = Vector2(193, 184)
+target_position = Vector2(429, 0)
 script = ExtResource("1_f6acx")
 
-[node name="Reference" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+position = Vector2(-10.0545, -1)
+scale = Vector2(0.0945536, 1.9)
+points = PackedVector2Array(0, 0, 4569.41, 0)
+default_color = Color(0.14419, 0.507946, 0.799872, 1)
 
-[node name="CollisionParticles" type="GPUParticles2D" parent="Reference"]
-position = Vector2(-1, 0)
-amount = 25
+[node name="StaticBody2D" type="Area2D" parent="Line2D"]
+position = Vector2(0.576439, 0)
+scale = Vector2(1, 0.526316)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/StaticBody2D"]
+position = Vector2(19.5, 0)
+scale = Vector2(1, 1)
+shape = SubResource("SegmentShape2D_0ldhr")
+
+[node name="CollisionParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-1, -1)
+amount = 500
 process_material = SubResource("ParticleProcessMaterial_0bdrq")
 texture = ExtResource("2_g4wxs")
 lifetime = 0.3
+
+[node name="CastingParticles" type="GPUParticles2D" parent="."]
+position = Vector2(-10, -1)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_jdulm")
+texture = ExtResource("2_g4wxs")
+lifetime = 0.3
+
+[node name="BeamParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-1, -1)
+amount = 250
+process_material = SubResource("ParticleProcessMaterial_kjjj0")
+texture = ExtResource("2_g4wxs")
+lifetime = 0.7
+speed_scale = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4kf6u")
 
 [node name="is_shooting" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
 [node name="shoot" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
+wait_time = 0.5
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(-1, -1)
-target_position = Vector2(429, 0)
-
-[node name="Line2D" type="Line2D" parent="RayCast2D"]
-position = Vector2(-1.66666, 0)
-scale = Vector2(0.833333, 1.9)
-points = PackedVector2Array(0, 0, 40, 0)
-default_color = Color(0.14419, 0.507946, 0.799872, 1)
-
-[node name="StaticBody2D" type="Area2D" parent="RayCast2D/Line2D"]
-scale = Vector2(1, 0.526316)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RayCast2D/Line2D/StaticBody2D"]
-position = Vector2(19.5, 0)
-shape = SubResource("SegmentShape2D_0ldhr")
-
-[node name="BeamParticles2D" type="GPUParticles2D" parent="RayCast2D"]
-amount = 1000
-process_material = SubResource("ParticleProcessMaterial_kjjj0")
-texture = ExtResource("2_g4wxs")
-lifetime = 0.3
-
-[node name="CastingParticles" type="GPUParticles2D" parent="RayCast2D"]
-amount = 25
-process_material = SubResource("ParticleProcessMaterial_jdulm")
-texture = ExtResource("2_g4wxs")
-lifetime = 0.3
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="RayCast2D"]
-environment = SubResource("Environment_4kf6u")
-
-[connection signal="timeout" from="is_shooting" to="RayCast2D" method="_on_timer_timeout"]
-[connection signal="timeout" from="shoot" to="RayCast2D" method="_on_shoot_timeout"]
+[connection signal="body_entered" from="Line2D/StaticBody2D" to="." method="_on_static_body_2d_body_entered"]
+[connection signal="timeout" from="is_shooting" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="shoot" to="." method="_on_shoot_timeout"]

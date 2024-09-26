@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://vm5afcc1tl8c"]
+
+[ext_resource type="Script" path="res://Marker2D.gd" id="1_gsqha"]
+[ext_resource type="PackedScene" uid="uid://f4f3euy2ir7y" path="res://laser.tscn" id="2_b6vh8"]
+
+[sub_resource type="Animation" id="Animation_6wc8i"]
+resource_name = "new_animation"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 2.98, 3.99),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.5708, -3.14159, -1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rs8jj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xsj3k"]
+_data = {
+"RESET": SubResource("Animation_rs8jj"),
+"new_animation": SubResource("Animation_6wc8i")
+}
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(470, 255)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-6.10352e-05, 0)
+script = ExtResource("1_gsqha")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Marker2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xsj3k")
+}
+autoplay = "new_animation"
+speed_scale = 0.5
+
+[node name="RayCast2D" parent="Marker2D" instance=ExtResource("2_b6vh8")]
+position = Vector2(4.57764e-05, 6.10352e-05)

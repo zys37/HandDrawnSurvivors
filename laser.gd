@@ -1,43 +1,55 @@
-extends Node2D
+extends RayCast2D
 
-const maxrange = 5000
-var based_width = 5
-var widthy = based_width
-var shoot = false
-@onready var collision = $RayCast2D/Line2D/StaticBody2D/CollisionShape2D
-# Called when the node enters the scene tree for the first time.
+@onready var casting_particles: GPUParticles2D = $CastingParticles
+@onready var collision_particles_2: GPUParticles2D = $CollisionParticles2
+@onready var beam_particle_2d: GPUParticles2D = $BeamParticle2D
+var is_casting: bool = false :
+	set(value): 
+		is_casting = value
+		$BeamParticles2D.emitting = is_casting
+		$CastingParticles.emitting = is_casting
+		if is_casting:
+			appear()
+			$shoot.start()
+		else:
+			$CollisionParticles.emitting = false
+			disappear()
+		set_physics_process(is_casting)
+func bigger_spell():
+	$".".scale.x=global.spell_scale
+	$".".scale.y=global.spell_scale
 func _ready():
-	$RayCast2D/CastingParticles.emitting = false
-	$RayCast2D/BeamParticles2D.emitting = false
+	is_casting = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	$RayCast2D/Line2D.width = widthy
-	var mouse_position = get_local_mouse_position()
-	var max_cast_to = mouse_position.normalized()*maxrange
-	$RayCast2D.target_position = max_cast_to
-	
-	if $RayCast2D.is_colliding():
-		$Reference.global_position = $RayCast2D.get_collision_point()
-		$RayCast2D/Line2D.set_point_position(1,$RayCast2D/Line2D.to_local($Reference.global_position))
-	else:
-		$Reference.global_position = $RayCast2D.target_position
-		$RayCast2D/Line2D.points[1] = $Reference.global_position
-		$RayCast2D/BeamParticles2D.position = $Reference.global_position
-		$RayCast2D/BeamParticles2D.process_material.emission_box_extents.x = $Reference.global_position.length()
-	if shoot == true:
-		collision.shape.b = $RayCast2D/Line2D.points[1]
-		collision.disabled = false
-		$RayCast2D/Line2D.visible = true
-	else:
-		collision.shape.b = Vector2.ZERO
-		collision.disabled = true
-		$RayCast2D/Line2D.visible = false
-	if Input.is_action_pressed("click"):
-		shoot = true
-		$RayCast2D/BeamParticles2D.emitting = true
-		$RayCast2D/CastingParticles.emitting = true
-	else:
-		shoot = false
-		$RayCast2D/CastingParticles.emitting = false
-		$RayCast2D/BeamParticles2D.emitting = false
+func _physics_process(delta: float) -> void:
+	$is_shooting.wait_time = global.laser_cooldown
+	$shoot.wait_time = global.laser_duration
+	var cast_point := target_position
+	force_raycast_update()
+	$CollisionParticles.emitting = is_colliding()
+	if is_colliding():
+		cast_point = to_local(get_collision_point())
+		$CollisionParticles.global_rotation = get_collision_normal().angle()
+		$CollisionParticles.position = cast_point
+	$Line2D.points[1] = cast_point
+	$BeamParticles2D.position = cast_point * 0.5
+	$BeamParticles2D.process_material.emission_box_extents.x = cast_point.length() * 0.5
+func appear() -> void:
+	$Line2D/StaticBody2D/CollisionShape2D.disabled = false
+	var tween = create_tween()
+	tween.tween_property($Line2D, "width", 3.0, 0.2)
+func disappear() -> void:
+	$Line2D/StaticBody2D/CollisionShape2D.disabled = true
+	var tween = create_tween()
+	tween.tween_property($Line2D, "width", 0, 0.1)
+
+
+func _on_timer_timeout():
+	is_casting = true
+func _on_shoot_timeout():
+	is_casting = false
+
+
+func _on_static_body_2d_body_entered(body):
+	if body.has_method("dmg_taken"):
+		body.dmg_taken(global.laser_damage)

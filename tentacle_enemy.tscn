@@ -89,6 +89,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xtqh8"]
+radius = 18.2483
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_5v586")
@@ -100,5 +101,5 @@ autoplay = "default"
 frame_progress = 0.215084
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -13)
+position = Vector2(0, -23)
 shape = SubResource("CircleShape2D_xtqh8")

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b2203kxapanmp" path="res://Character/mage_idle_outline.png" id="2_c8nmf"]
 [ext_resource type="Texture2D" uid="uid://blt5dxd0aqo42" path="res://Character/mage_walking_outline_colored.png" id="3_qjmdn"]
 [ext_resource type="PackedScene" uid="uid://clubpcgjbs08s" path="res://Spell.tscn" id="4_0dwno"]
-[ext_resource type="PackedScene" uid="uid://f4f3euy2ir7y" path="res://laser.tscn" id="5_lgyts"]
+[ext_resource type="PackedScene" uid="uid://vm5afcc1tl8c" path="res://napierdzielator.tscn" id="6_v43wm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3yckm"]
 atlas = ExtResource("2_c8nmf")
@@ -202,6 +202,9 @@ script = ExtResource("1_vlvas")
 sprite_frames = SubResource("SpriteFrames_rqd3y")
 animation = &"Walking"
 
+[node name="Node2D3" parent="Hero" instance=ExtResource("6_v43wm")]
+position = Vector2(48, -126)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
@@ -230,14 +233,12 @@ position = Vector2(-14, -10)
 shape = SubResource("CapsuleShape2D_iubwa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-25, 21)
 shape = SubResource("CircleShape2D_hd8hc")
 
 [node name="attack_cooldown" type="Timer" parent="."]
 wait_time = 0.5
-
-[node name="Node2D2" parent="." instance=ExtResource("5_lgyts")]
-position = Vector2(49, -125)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
