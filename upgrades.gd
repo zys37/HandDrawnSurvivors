@@ -2,8 +2,7 @@ extends Control
 @onready var left_upgrade = $"Left Upgrade"
 @onready var right_upgrade = $"Right Upgrade"
 
-var upgrades = ["Increase the speed of your spells", "Increase the size of your spells", "You move faster", "Gain 25% more xp" , "Increase Spawn Rate of Enemies", "Multishot"]
-
+var upgrades = ["Increase the speed of your spells", "Increase the size of your spells", "You move faster", "Gain 25% more xp" , "Increase Spawn Rate of Enemies", "Multishot", "Laser Beam"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_upgrade_buttons()
@@ -36,7 +35,14 @@ func _on_left_upgrade_pressed():
 	if $"Left Upgrade".text == upgrades[5]:
 		global.is_multishot_taken = true
 	if $"Left Upgrade".text == upgrades[5] and global.is_multishot_taken == true:
-		global.multishot_damage+=0.2
+		global.multishot_damage+=1
+	if $"Left Upgrade".text == upgrades[6]:
+		global.is_laser_taken = true
+		global.laser_damage +=5
+		global.laser_duration+=0.5
+		global.laser_scale += 1
+	if $"Left Upgrade".text == upgrades[6] and global.is_laser_taken == true:
+		global.laser_duration+=0.5
 	global.upgrade_chosen = true
 	get_tree().paused = false
 
@@ -57,5 +63,12 @@ func _on_right_upgrade_pressed():
 		global.is_multishot_taken = true
 	if $"Right Upgrade".text == upgrades[5] and global.is_multishot_taken == true:
 		global.multishot_damage+=0.2
+	if $"Right Upgrade".text == upgrades[6]:
+		global.is_laser_taken = true
+		global.laser_damage +=5
+		global.laser_duration+=0.5
+		global.laser_scale += 1
+	if $"Right Upgrade".text == upgrades[6] and global.is_laser_taken == true:
+		global.laser_duration+=0.5
 	global.upgrade_chosen = true
 	get_tree().paused = false

@@ -2,7 +2,7 @@ extends Node
 
 var stage = 0
 var xp = 0
-var xp_threshold = [20,40,80,160,320,640,1280,2560,5120,10240,10240,10240,10240,10240,10240,10240,10240,10240,10240]
+var xp_threshold = [40,80,160,320,640,1280,2560,5120,10240,10240,10240,10240,10240,10240,10240,10240,10240,10240]
 var player_level = 1
 var speed = 2
 var player_health = 100
@@ -16,8 +16,10 @@ var multishot_scale = 0.1
 var player_speed = 300
 var wait_time = 0.35
 var upgrade_chosen = false
-var multishot_damage = 0.1
-var spell_damage = 0
-var laser_cooldown = 5
-var laser_duration = 0.5
-var laser_damage = 5
+var multishot_damage = 1
+var spell_damage = 1
+var laser_cooldown = 3
+var laser_duration = 0
+var laser_damage = 0
+var laser_scale = 0
+var is_laser_taken = false

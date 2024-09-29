@@ -92,6 +92,7 @@ animations = [{
 radius = 146.818
 
 [node name="eye_enemy" type="CharacterBody2D" groups=["enemy"]]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("2_4ryp2")
 
 [node name="Eye_enemy" type="AnimatedSprite2D" parent="."]

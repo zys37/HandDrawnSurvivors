@@ -4,10 +4,13 @@ extends CharacterBody2D
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
+var timer_inactive = true
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_playing = 0
 var multishot_scene = preload("res://Multishot.tscn")
-
+var laser_scene = preload("res://laser.tscn")
+var fire_cooldown = 0.5
+var fire_timer = 0.0
 func fire():
 	var multishot = multishot_scene.instantiate()
 	multishot.direction = ($Node2D/Marker2D.global_position - global_position).normalized()
@@ -17,6 +20,7 @@ func fire():
 func _physics_process(delta):
 	# Add the gravity.
 	# Handle jump.
+	fire_timer -= delta
 	if is_playing==0:
 		$Hero.play("Idle")
 	else:
@@ -58,9 +62,12 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, global.player_speed)
 		is_playing = 0
 	if global.player_health <= 0:
-		get_tree().paused = true 
-	if global.is_multishot_taken == true:
+		get_tree().change_scene_to_file("res://menu.tscn")
+	if global.is_multishot_taken and fire_timer <= 0.0:
 		fire()
+		fire_timer = fire_cooldown
+	if global.is_laser_taken == true:
+		$Hero/Node2D3.visible = true
 	move_and_slide()
 
 
@@ -76,3 +83,4 @@ func _on_area_2d_body_entered(body):
 func _on_area_2d_body_exited(body):
 	if body.has_method("dmg_taken"):
 		body.ButtonTimer.stop()
+

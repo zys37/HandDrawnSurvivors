@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://icjtndf2xu4w"]
+
+[ext_resource type="Script" path="res://Menu.gd" id="1_87u0y"]
+[ext_resource type="Texture2D" uid="uid://b515grckg0axk" path="res://Graphics/game_background_2.png" id="2_njr50"]
+[ext_resource type="FontFile" uid="uid://dsl6tfv1jdfdc" path="res://Kaph-Regular.ttf" id="3_pgtcs"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 63.0
+offset_right = 35.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_87u0y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(582, 321)
+scale = Vector2(1.05127, 0.724854)
+texture = ExtResource("2_njr50")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 83.0
+offset_right = 1249.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("3_pgtcs")
+theme_override_font_sizes/font_size = 100
+text = "START"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 351.0
+offset_right = 1249.0
+offset_bottom = 553.0
+theme_override_fonts/font = ExtResource("3_pgtcs")
+theme_override_font_sizes/font_size = 100
+text = "QUIT"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

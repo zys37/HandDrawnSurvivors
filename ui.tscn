@@ -1,40 +1,52 @@
-[gd_scene load_steps=4 format=3 uid="uid://eirt5qfwo6n3"]
+[gd_scene load_steps=7 format=3 uid="uid://eirt5qfwo6n3"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_nc24u"]
 [ext_resource type="Script" path="res://exp.gd" id="2_7p7gw"]
 [ext_resource type="Script" path="res://health.gd" id="3_niiat"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4lmf"]
+bg_color = Color(0.569866, 0.601867, 0.662314, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5gny"]
+bg_color = Color(0.544383, 0.563069, 0.892858, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ejsl"]
+bg_color = Color(0.263764, 0.599968, 0.446646, 1)
+border_color = Color(0.0295066, 0.0295066, 0.0295065, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 57.0
-offset_bottom = 57.0
+offset_top = -2.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="level" type="Label" parent="."]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 311.0
-offset_right = 96.0
-offset_bottom = 334.0
+offset_left = 22.0
+offset_right = 62.0
+offset_bottom = 23.0
 script = ExtResource("1_nc24u")
 
 [node name="exp" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 70.0
-offset_top = 341.0
-offset_right = 1824.0
-offset_bottom = 368.0
+offset_left = 22.0
+offset_top = 28.0
+offset_right = 1243.0
+offset_bottom = 44.0
+theme_override_styles/background = SubResource("StyleBoxFlat_b4lmf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_w5gny")
 show_percentage = false
 script = ExtResource("2_7p7gw")
 
 [node name="health" type="ProgressBar" parent="."]
 layout_mode = 0
-offset_left = 793.0
-offset_top = 987.0
-offset_right = 1132.0
-offset_bottom = 1014.0
+offset_left = 517.0
+offset_top = 690.0
+offset_right = 862.0
+offset_bottom = 717.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8ejsl")
 script = ExtResource("3_niiat")

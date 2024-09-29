@@ -13,11 +13,11 @@ func _process(delta):
 func update_level():
 	text ="Level 	" + str(global.player_level)
 func update_stage():
-	if global.player_level == 3:
+	if global.player_level == 5:
 		global.stage = 1
 		global.speed = 2.5
 		global.enemy_damage = 6
-	if global.player_level ==6:
+	if global.player_level ==10:
 		global.stage = 2
 		global.speed = 3
 		global.enemy_damage = 7

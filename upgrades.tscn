@@ -20,20 +20,19 @@ script = ExtResource("1_gr86e")
 [node name="Left Upgrade" type="Button" parent="."]
 process_mode = 3
 layout_mode = 0
-offset_left = 137.0
-offset_top = 223.0
-offset_right = 691.0
-offset_bottom = 679.0
+offset_top = 73.0
+offset_right = 526.0
+offset_bottom = 437.0
 text = "  "
 text_overrun_behavior = 4
 
 [node name="Right Upgrade" type="Button" parent="."]
 process_mode = 3
 layout_mode = 0
-offset_left = 858.0
-offset_top = 223.0
-offset_right = 1412.0
-offset_bottom = 684.0
+offset_left = 736.0
+offset_top = 73.0
+offset_right = 1275.0
+offset_bottom = 437.0
 
 [connection signal="pressed" from="Left Upgrade" to="." method="_on_left_upgrade_pressed"]
 [connection signal="pressed" from="Right Upgrade" to="." method="_on_right_upgrade_pressed"]

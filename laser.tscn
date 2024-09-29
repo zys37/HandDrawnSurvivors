@@ -72,7 +72,6 @@ scale = Vector2(1, 0.526316)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Line2D/StaticBody2D"]
 position = Vector2(19.5, 0)
-scale = Vector2(1, 1)
 shape = SubResource("SegmentShape2D_0ldhr")
 
 [node name="CollisionParticles" type="GPUParticles2D" parent="."]
@@ -101,7 +100,7 @@ speed_scale = 3.0
 environment = SubResource("Environment_4kf6u")
 
 [node name="is_shooting" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 0.001
 autostart = true
 
 [node name="shoot" type="Timer" parent="."]
